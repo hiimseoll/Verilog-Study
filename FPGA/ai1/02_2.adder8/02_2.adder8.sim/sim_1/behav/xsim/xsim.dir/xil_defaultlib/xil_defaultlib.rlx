@@ -1,0 +1,9 @@
+0.7
+2020.2
+Jun 10 2021
+20:04:57
+E:/project/FPGA/ai1/02_2.adder8/02_2.adder8.sim/sim_1/behav/xsim/glbl.v,1623370582,verilog,,,,glbl,,,,,,,,
+E:/project/FPGA/ai1/02_2.adder8/02_2.adder8.srcs/sim_1/new/tb_adder8.v,1770797465,verilog,,,,tb_adder8,,,,,,,,
+E:/project/FPGA/ai1/02_2.adder8/02_2.adder8.srcs/sources_1/imports/new/full_adder.v,1770710230,verilog,,E:/project/FPGA/ai1/02_2.adder8/02_2.adder8.srcs/sources_1/imports/new/hadder.v,,full_adder,,,,,,,,
+E:/project/FPGA/ai1/02_2.adder8/02_2.adder8.srcs/sources_1/imports/new/hadder.v,1770702446,verilog,,E:/project/FPGA/ai1/02_2.adder8/02_2.adder8.srcs/sim_1/new/tb_adder8.v,,hadder,,,,,,,,
+E:/project/FPGA/ai1/02_2.adder8/02_2.adder8.srcs/sources_1/new/adder8.v,1770796189,verilog,,E:/project/FPGA/ai1/02_2.adder8/02_2.adder8.srcs/sources_1/imports/new/full_adder.v,,adder8,,,,,,,,

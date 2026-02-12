@@ -20,7 +20,6 @@ module tb_adder8();
         r_a = 8'b00000000; r_b = 8'b00000000; r_cin = 0;
         #10 r_a = 8'b11000001; r_b = 8'b10000011;
         #10 $finish;
-
     end
 
 endmodule

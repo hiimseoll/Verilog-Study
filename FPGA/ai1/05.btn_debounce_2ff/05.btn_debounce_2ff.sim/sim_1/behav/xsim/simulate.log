@@ -1,0 +1,5 @@
+Time resolution is 1 ps
+[100000] start btn noise generation...
+[30001420000] TEST PASSED led changed
+==================== simulation finish ====================            30002420
+$finish called at time : 30002420 ns : File "E:/project/FPGA/ai1/05.btn_debounce_2ff/05.btn_debounce_2ff.srcs/sim_1/new/tb_button_debounce.v" Line 50

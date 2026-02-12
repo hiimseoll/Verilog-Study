@@ -1,0 +1,8 @@
+0.7
+2020.2
+Jun 10 2021
+20:04:57
+E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.sim/sim_1/behav/xsim/glbl.v,1623370582,verilog,,,,glbl,,,,,,,,
+E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.srcs/sim_1/new/tb_my_btn_debounce.v,1770892569,verilog,,,,tb_my_btn_debounce,,,,,,,,
+E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.srcs/sources_1/imports/new/led_toggle.v,1770872590,verilog,,E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.srcs/sources_1/new/my_btn_debounce.v,,led_toggle,,,,,,,,
+E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.srcs/sources_1/new/my_btn_debounce.v,1770893170,verilog,,E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.srcs/sim_1/new/tb_my_btn_debounce.v,,my_btn_debounce,,,,,,,,

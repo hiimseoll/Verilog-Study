@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Fri Feb 13 08:58:56 2026
+# Process ID: 5444
+# Current directory: E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.sim/sim_1/synth/func/xsim
+# Command line: wbtcv.exe -mode batch -source E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.sim/sim_1/synth/func/xsim/xsim.dir/tb_my_btn_debounce_func_synth/webtalk/xsim_webtalk.tcl -notrace
+# Log file: E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.sim/sim_1/synth/func/xsim/webtalk.log
+# Journal file: E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.sim/sim_1/synth/func/xsim\webtalk.jou
+#-----------------------------------------------------------
+source E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.sim/sim_1/synth/func/xsim/xsim.dir/tb_my_btn_debounce_func_synth/webtalk/xsim_webtalk.tcl -notrace

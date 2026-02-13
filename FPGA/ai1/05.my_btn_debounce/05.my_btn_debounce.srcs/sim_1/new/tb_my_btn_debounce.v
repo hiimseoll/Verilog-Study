@@ -2,10 +2,6 @@
 
 module tb_my_btn_debounce();
 
-    parameter CLK_FREQ = 100_000_000; // 100MHz
-    parameter CLK_PERIOD = 10; // 10ns
-    //parameter VALID_BTN_PRESS = 10; // 10ms
-
     reg r_btnC;
     reg r_clk;
     reg r_reset;
@@ -41,7 +37,7 @@ module tb_my_btn_debounce();
         #20_000_000 // 20ms
 
         r_btnC = 1; 
-        #10_000_000; // 10ms clean_btn = 1
+        #13_000_000; // 10ms clean_btn = 1
         r_btnC = 0;
         #5_000_000   // 5ms
         r_btnC = 1;
@@ -53,7 +49,7 @@ module tb_my_btn_debounce();
         #20_000_000 // 20ms
 
         r_btnC = 0;
-        #10_000_000; // 10ms clean_btn = 0
+        #13_000_000; // 10ms clean_btn = 0
         r_btnC = 1;
         #5_000_000  // 5ms
         r_btnC = 0;

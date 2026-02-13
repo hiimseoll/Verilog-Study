@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Fri Feb 13 09:24:19 2026
+# Process ID: 14524
+# Current directory: E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.sim/sim_1/behav/xsim
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7220 E:\project\FPGA\ai1\05.my_btn_debounce\05.my_btn_debounce.sim\sim_1\behav\xsim\tb_my_btn_debounce_behav.wdb
+# Log file: E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.sim/sim_1/behav/xsim/vivado.log
+# Journal file: E:/project/FPGA/ai1/05.my_btn_debounce/05.my_btn_debounce.sim/sim_1/behav/xsim\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_wave_database {E:\project\FPGA\ai1\05.my_btn_debounce\05.my_btn_debounce.sim\sim_1\behav\xsim\tb_my_btn_debounce_behav.wdb}
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'E:/Xilinx/Vivado/2021.1/data/ip'.
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Fri Feb 13 09:24:45 2026...
+tabase: Time (s): cpu = 00:00:09 ; elapsed = 00:00:07 . Memory (MB): peak = 1248.590 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Fri Feb 13 09:24:48 2026...

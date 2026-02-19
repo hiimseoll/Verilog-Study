@@ -7,12 +7,15 @@ module top(
     input [7:0] sw,
     output [7:0] seg,
     output [3:0] an,
-    output [15:0] led
+    output [15:14] led,
+    output tick_led
+   
     //output [2:0] JXADC  // led 연결(외부출력)
     );
 
     wire [2:0] w_debounced_btn;
     wire [13:0] w_seg_data; // max 9999의 binary 자릿수
+    wire w_tick;
 
     btn_debounce u_btn_debounce(
         .clk(clk),
@@ -24,13 +27,14 @@ module top(
     control_tower u_control_tower(
         .clk(clk),
         .reset(reset),
+        .tick(w_tick),
         .btn(w_debounced_btn),
         .sw(sw),
         .seg_data(w_seg_data),
         .led(led)
     );
 
-    /*
+    
     fnd_controller u_fnd_controller(
         .clk(clk),
         .reset(reset),        // sw[15]
@@ -38,7 +42,18 @@ module top(
         .an(an),
         .seg(seg)
     );
-    */
+
+    tick_gen u_tick_gen(
+        .clk(clk),
+        .reset(reset),
+        .led(tick_led)
+    );
+
+    tick_generator u_tick_generator(
+        .clk(clk),
+        .reset(reset),
+        .tick(w_tick)
+    );
     
     //assign JXADC = w_debounced_btn;
     //assign led = w_debounced_btn;

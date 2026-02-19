@@ -72,7 +72,7 @@ proc create_report { reportName command } {
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param checkpoint.writeSynthRtdsInDcp 1
 set_param chipscope.maxJobs 2
-set_param synth.incrementalSynthesisCache C:/Users/IOT17/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-6488-DESKTOP-FAVD00F/incrSyn
+set_param synth.incrementalSynthesisCache C:/Users/IOT17/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-13748-DESKTOP-FAVD00F/incrSyn
 set_param xicom.use_bs_reader 1
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
@@ -94,6 +94,8 @@ OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
   E:/project/FPGA/ai1/06.up_down_counter/06.up_down_counter.srcs/sources_1/new/btn_debounce.v
   E:/project/FPGA/ai1/06.up_down_counter/06.up_down_counter.srcs/sources_1/new/control_tower.v
+  E:/project/FPGA/ai1/06.up_down_counter/06.up_down_counter.srcs/sources_1/new/fnd_controller.v
+  E:/project/FPGA/ai1/06.up_down_counter/06.up_down_counter.srcs/sources_1/new/tick_gen.v
   E:/project/FPGA/ai1/06.up_down_counter/06.up_down_counter.srcs/sources_1/new/top.v
 }
 OPTRACE "Adding files" END { }

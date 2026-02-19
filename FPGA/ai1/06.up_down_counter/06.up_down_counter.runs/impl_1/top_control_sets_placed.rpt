@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date         : Fri Feb 13 16:32:56 2026
+| Date         : Thu Feb 19 15:07:36 2026
 | Host         : DESKTOP-FAVD00F running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     5 |
-|    Minimum number of control sets                        |     5 |
+| Total control sets                                       |     4 |
+|    Minimum number of control sets                        |     4 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    24 |
+| Unused register locations in slices containing registers |    23 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,14 +39,14 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     5 |
+| Total control sets |     4 |
 | >= 0 to < 4        |     2 |
 | >= 4 to < 6        |     0 |
 | >= 6 to < 8        |     0 |
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     2 |
+| >= 14 to < 16      |     1 |
 | >= 16              |     1 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
@@ -59,10 +59,10 @@ Table of Contents
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | No           | No                    | No                     |               1 |            1 |
-| No           | No                    | Yes                    |              42 |           13 |
+| No           | No                    | Yes                    |              89 |           22 |
 | No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |              14 |            7 |
-| Yes          | No                    | Yes                    |              15 |            4 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |              15 |            8 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -75,9 +75,8 @@ Table of Contents
 +----------------+------------------------------------------+------------------+------------------+----------------+--------------+
 |  clk_IBUF_BUFG |                                          |                  |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG | u_btn_debounce/U_debounce_btnL/btn_state | reset_IBUF       |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG | u_control_tower/r_10ms_counter0          | reset_IBUF       |                3 |             14 |         4.67 |
-|  clk_IBUF_BUFG | u_control_tower/led[13]_i_1_n_0          |                  |                7 |             14 |         2.00 |
-|  clk_IBUF_BUFG |                                          | reset_IBUF       |               13 |             42 |         3.23 |
+|  clk_IBUF_BUFG | u_control_tower/r_10ms_counter           | reset_IBUF       |                7 |             14 |         2.00 |
+|  clk_IBUF_BUFG |                                          | reset_IBUF       |               22 |             89 |         4.05 |
 +----------------+------------------------------------------+------------------+------------------+----------------+--------------+
 
 

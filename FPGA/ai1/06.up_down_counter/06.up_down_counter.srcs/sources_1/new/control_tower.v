@@ -3,10 +3,11 @@
 module control_tower(
     input clk,
     input reset,        // sw[15]
+    input tick,
     input [2:0] btn,    // btn[0]: btnL, btn[1]: btnC, btn[2]: btnR
     input [7:0] sw,
     output [13:0] seg_data,
-    output reg [15:0] led
+    output reg [15:14] led
     );
 
 
@@ -38,15 +39,35 @@ module control_tower(
         if(reset) begin
             r_counter <= 0;
             r_10ms_counter <= 0;
-        end else if(r_mode == UP_COUNTER) begin
+        end else if(r_mode == UP_COUNTER) begin                     // 1. add logic
             if(r_counter == 20'd1_000_000 - 1) begin // 10ms check
                 r_counter <= 0;
-                r_10ms_counter <= r_10ms_counter + 1;
-                led[13:0] <= r_10ms_counter;
+
+                if(r_10ms_counter >= 9999) begin // 9999도달시 0
+                    r_10ms_counter <= 0;
+                end else begin
+                    r_10ms_counter <= r_10ms_counter + 1;
+                end
+
+                //led[13:0] <= r_10ms_counter;
             end else begin
                 r_counter <= r_counter + 1;
             end
-        end else begin
+        end else if(r_mode == DOWN_COUNTER) begin                   // 1. sub logic
+            if(r_counter == 20'd1_000_000 - 1) begin // 10ms check
+                r_counter <= 0;
+
+                if(r_10ms_counter <= 0) begin// 9999도달시 0
+                    r_10ms_counter <= 9999;
+                end else begin
+                    r_10ms_counter <= r_10ms_counter - 1;
+                end
+
+                //led[13:0] <= r_10ms_counter; // led로 count 표시
+            end else begin
+                r_counter <= r_counter + 1;
+            end
+        end else begin                                              // 3. SLIDE_SW_READ
             r_counter <= 0;
             r_10ms_counter <= 0;
         end

@@ -954,6 +954,16 @@
 		)
 		(uuid bd1617e8-5a3b-4def-8e11-592e1ecfe253)
 	)
+	(text "mux가 더 맞음"
+		(exclude_from_sim no)
+		(at 84.328 103.632 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "068655e2-ffa1-40e8-9a15-de866e83e673")
+	)
 	(junction
 		(at 31.75 43.18)
 		(diameter 0)

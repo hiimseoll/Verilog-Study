@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date             : Thu Feb 19 19:52:59 2026
+| Date             : Fri Feb 20 11:10:14 2026
 | Host             : DESKTOP-FAVD00F running 64-bit major release  (build 9200)
 | Command          : report_power -file min_sec_stopwatch_power_routed.rpt -pb min_sec_stopwatch_power_summary_routed.pb -rpx min_sec_stopwatch_power_routed.rpx
 | Design           : min_sec_stopwatch
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.092        |
+| Total On-Chip Power (W)  | 0.094        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.020        |
+| Dynamic (W)              | 0.022        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.5         |
@@ -52,16 +52,16 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.001 |        3 |       --- |             --- |
-| Slice Logic    |     0.002 |      548 |       --- |             --- |
-|   LUT as Logic |     0.002 |      234 |     20800 |            1.13 |
-|   CARRY4       |    <0.001 |       52 |      8150 |            0.64 |
-|   Register     |    <0.001 |      150 |     41600 |            0.36 |
+| Clocks         |     0.002 |        3 |       --- |             --- |
+| Slice Logic    |     0.002 |      691 |       --- |             --- |
+|   LUT as Logic |     0.002 |      315 |     20800 |            1.51 |
+|   CARRY4       |    <0.001 |       66 |      8150 |            0.81 |
+|   Register     |    <0.001 |      184 |     41600 |            0.44 |
 |   Others       |     0.000 |       14 |       --- |             --- |
-| Signals        |     0.002 |      438 |       --- |             --- |
+| Signals        |     0.002 |      528 |       --- |             --- |
 | I/O            |     0.016 |       17 |       106 |           16.04 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.092 |          |           |                 |
+| Total          |     0.094 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,9 +71,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.014 |       0.005 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.015 |       0.006 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.013 |       0.001 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.005 |       0.004 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.006 |       0.005 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -137,12 +137,13 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+---------------------+-----------+
-| Name                | Power (W) |
-+---------------------+-----------+
-| min_sec_stopwatch   |     0.020 |
-|   u_fnd_controller  |     0.002 |
-|     u_bin2bcd4digit |     0.001 |
-+---------------------+-----------+
++------------------------+-----------+
+| Name                   | Power (W) |
++------------------------+-----------+
+| min_sec_stopwatch      |     0.022 |
+|   u_control_tower      |     0.001 |
+|   u_fnd_controller     |     0.002 |
+|     u_fnd_digit_select |     0.001 |
++------------------------+-----------+
 
 

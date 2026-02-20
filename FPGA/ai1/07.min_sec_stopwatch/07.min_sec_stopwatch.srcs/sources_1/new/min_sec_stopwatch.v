@@ -11,7 +11,7 @@ module min_sec_stopwatch(
     wire [2:0] w_debounced_btn;
     wire [11:0] w_seg_data;
     wire w_seg_dot;
-    wire w_mode;
+    wire w_idle;
 
     btn_debounce u_btn_debounce(
         .clk(clk),
@@ -25,7 +25,7 @@ module min_sec_stopwatch(
         .reset(reset),
         .btn(w_debounced_btn),
         .seg_data(w_seg_data),
-        .mode(w_mode)
+        .idle(w_idle)
     );
 
     fnd_controller u_fnd_controller(
@@ -35,7 +35,7 @@ module min_sec_stopwatch(
         .an(an),
         .seg(seg[7:0]),
         .seg_dot(w_seg_dot),
-        .mode(w_mode)
+        .idle(w_idle)
     );
 
     blink u_blink(
@@ -43,4 +43,5 @@ module min_sec_stopwatch(
         .reset(reset),
         .seg_dot(w_seg_dot)
     );
+
 endmodule

@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date                      : Thu Feb 19 19:52:43 2026
+| Date                      : Fri Feb 20 11:09:57 2026
 | Host                      : DESKTOP-FAVD00F running 64-bit major release  (build 9200)
 | Command                   : report_io -file min_sec_stopwatch_io_placed.rpt
 | Design                    : min_sec_stopwatch

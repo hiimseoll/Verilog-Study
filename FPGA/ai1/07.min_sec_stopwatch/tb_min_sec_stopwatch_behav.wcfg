@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_min_sec_stopwatch_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_min_sec_stopwatch" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="5.501000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="58.901000001 ms"></ZoomEndTime>
+      <Cursor1Time time="50.001000000 ms"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="135"></NameColumnWidth>
+      <ValueColumnWidth column_width="64"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="6" />
+   <wvobject fp_name="/tb_min_sec_stopwatch/r_clk" type="logic">
+      <obj_property name="ElementShortName">r_clk</obj_property>
+      <obj_property name="ObjectShortName">r_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_min_sec_stopwatch/r_reset" type="logic">
+      <obj_property name="ElementShortName">r_reset</obj_property>
+      <obj_property name="ObjectShortName">r_reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_min_sec_stopwatch/u_min_sec_stopwatch/w_idle" type="logic">
+      <obj_property name="ElementShortName">w_idle</obj_property>
+      <obj_property name="ObjectShortName">w_idle</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_min_sec_stopwatch/r_btn" type="array">
+      <obj_property name="ElementShortName">r_btn[2:0]</obj_property>
+      <obj_property name="ObjectShortName">r_btn[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_min_sec_stopwatch/u_min_sec_stopwatch/u_control_tower/r_mode" type="array">
+      <obj_property name="ElementShortName">r_mode[1:0]</obj_property>
+      <obj_property name="ObjectShortName">r_mode[1:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_min_sec_stopwatch/u_min_sec_stopwatch/u_fnd_controller/seg" type="array">
+      <obj_property name="ElementShortName">seg[7:0]</obj_property>
+      <obj_property name="ObjectShortName">seg[7:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+</wave_config>

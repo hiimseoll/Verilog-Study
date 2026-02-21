@@ -16,11 +16,14 @@ always @(posedge tick, posedge reset) begin
             r_counter <= 0; 
         end else begin
             if(btn == r_clean_btn) begin
+
                 r_counter <= 0; 
+                
             end else begin
 
                 r_counter <= r_counter + 1;
-                if(r_counter >= 1) begin // 50ms debouncing
+
+                if(r_counter >= 1) begin // 50ms tick을 사용해 50ms 디바운싱
                     r_clean_btn <= btn;
                     r_counter <= 0;
                 end

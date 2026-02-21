@@ -115,7 +115,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 
@@ -128,7 +127,7 @@ set rc [catch {
   create_msg_db write_bitstream.pb
   set_param checkpoint.writeSynthRtdsInDcp 1
   set_param chipscope.maxJobs 2
-  set_param synth.incrementalSynthesisCache C:/Users/IOT17/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-8300-DESKTOP-FAVD00F/incrSyn
+  set_param synth.incrementalSynthesisCache C:/Users/IOT17/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-4712-DESKTOP-FAVD00F/incrSyn
   set_param xicom.use_bs_reader 1
   open_checkpoint top_routed.dcp
   set_property webtalk.parent_dir E:/project/FPGA/ai1/08.LED_BTN_TEST/08.LED_BTN_TEST.cache/wt [current_project]

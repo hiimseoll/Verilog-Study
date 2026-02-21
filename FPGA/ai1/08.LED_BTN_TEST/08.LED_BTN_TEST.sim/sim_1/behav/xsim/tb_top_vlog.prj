@@ -1,0 +1,13 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../08.LED_BTN_TEST.srcs/sources_1/new/debouncer.v" \
+"../../../../08.LED_BTN_TEST.srcs/sources_1/new/led_control.v" \
+"../../../../08.LED_BTN_TEST.srcs/sources_1/new/tick.v" \
+"../../../../08.LED_BTN_TEST.srcs/sources_1/new/top.v" \
+"../../../../08.LED_BTN_TEST.srcs/sim_1/new/tb_top.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

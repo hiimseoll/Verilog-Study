@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date             : Fri Feb 20 19:58:59 2026
+| Date             : Sat Feb 21 20:48:07 2026
 | Host             : DESKTOP-FAVD00F running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.080        |
+| Total On-Chip Power (W)  | 0.089        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.008        |
+| Dynamic (W)              | 0.017        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.6         |
@@ -53,15 +53,15 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      150 |       --- |             --- |
-|   LUT as Logic |    <0.001 |       78 |     20800 |            0.38 |
-|   Register     |    <0.001 |       47 |     41600 |            0.11 |
-|   CARRY4       |    <0.001 |        6 |      8150 |            0.07 |
+| Slice Logic    |    <0.001 |      168 |       --- |             --- |
+|   LUT as Logic |    <0.001 |       83 |     20800 |            0.40 |
+|   Register     |    <0.001 |       49 |     41600 |            0.12 |
+|   CARRY4       |    <0.001 |        9 |      8150 |            0.11 |
 |   Others       |     0.000 |        5 |       --- |             --- |
-| Signals        |    <0.001 |      103 |       --- |             --- |
-| I/O            |     0.007 |       19 |       106 |           17.92 |
+| Signals        |    <0.001 |       98 |       --- |             --- |
+| I/O            |     0.016 |       20 |       106 |           18.87 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.080 |          |           |                 |
+| Total          |     0.089 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,9 +71,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.011 |       0.001 |      0.010 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.003 |       0.002 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.011 |       0.002 |      0.010 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.013 |       0.001 |      0.013 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.005 |       0.004 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -140,7 +140,7 @@ Table of Contents
 +------+-----------+
 | Name | Power (W) |
 +------+-----------+
-| top  |     0.008 |
+| top  |     0.017 |
 +------+-----------+
 
 

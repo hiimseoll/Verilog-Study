@@ -1,6 +1,8 @@
 set_property SRC_FILE_INFO {cfile:E:/project/FPGA/ai1/08.LED_BTN_TEST/08.LED_BTN_TEST.srcs/constrs_1/imports/new/basys3.xdc rfile:../../../08.LED_BTN_TEST.srcs/constrs_1/imports/new/basys3.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:7 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN W5   IOSTANDARD LVCMOS33 } [get_ports clk]
+set_property src_info {type:XDC file:1 line:26 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN T1    IOSTANDARD LVCMOS33 } [get_ports {tb_mode}]
 set_property src_info {type:XDC file:1 line:27 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN R2    IOSTANDARD LVCMOS33 } [get_ports {reset}]
 set_property src_info {type:XDC file:1 line:31 export:INPUT save:INPUT read:READ} [current_design]

@@ -1,16 +1,16 @@
 `timescale 1ns / 1ps
 
-module tick(
+module tick #(parameter MAX_COUNT = 5_000_000)(
     input clk,
     input reset,
-    input tb_mode, // test bench mode -> tick을 50ns로 설정
+    //input tb_mode, // test bench mode -> tick을 50ns로 설정
 
     output tick_50ms
     );
 
-    parameter MAX_COUNT = 5_000_000;
+    //parameter MAX_COUNT = 5_000_000;
 
-    wire [$clog2(MAX_COUNT)-1:0] w_target = tb_mode ? 25'd4 : 25'd4_999_999; // 50ns : 50ms
+    //wire [$clog2(MAX_COUNT)-1:0] w_target = tb_mode ? 25'd4 : 25'd4_999_999; // 50ns : 50ms
 
     reg [$clog2(MAX_COUNT)-1:0] r_counter = 0; 
     reg r_tick_50ms = 1'b0;
@@ -20,7 +20,7 @@ module tick(
             r_tick_50ms <= 0;
             r_counter <= 0;            
         end else begin
-            if(r_counter >= w_target) begin 
+            if(r_counter >= MAX_COUNT - 1) begin //w_target
                 r_counter <= 0;
                 r_tick_50ms <= 1'b1;
             end else begin

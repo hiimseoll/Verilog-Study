@@ -1,10 +1,10 @@
 `timescale 1ns / 1ps
 
-module top(
+module top #(parameter VALUE_BY_MODE = 5_000_000)( // param override
     input clk,
     input reset,
     input btn,
-    input tb_mode,
+    //input tb_mode,
 
     output [15:0] led
     );
@@ -23,10 +23,10 @@ module top(
     wire w_clean_btn;
     wire [15:0] w_led;
 
-    tick u_tick( // 50ms tick generation module
+    tick #(.MAX_COUNT(VALUE_BY_MODE)) u_tick( // param override
         .clk(clk),
         .reset(reset),
-        .tb_mode(tb_mode),
+        //.tb_mode(tb_mode),
         .tick_50ms(w_tick_50ms)
     );
 

@@ -4,18 +4,18 @@ module tb_top();
     reg clk;
     reg reset;
     reg btn;
-    reg tb_mode;
+    //reg tb_mode;
 
     wire [15:0] led;
 
     // T = 10ns / F = 100MHz clock gen
     always #5 clk = ~clk;
 
-    top u_top(
+    top #(.VALUE_BY_MODE(5)) u_top( // 50ns for SIM (param override)
         .clk(clk),
         .reset(reset),
         .btn(btn),
-        .tb_mode(tb_mode),
+        //.tb_mode(tb_mode),
         .led(led)
     );
 
@@ -24,13 +24,13 @@ module tb_top();
         clk = 0;
         reset = 1;
         btn = 0;
-        tb_mode = 0;
+        //tb_mode = 0;
 
         // 2. reset 해제 // tb_mode = 1
         #100;
         reset = 0;
         #100;
-        tb_mode = 1;
+        //tb_mode = 1;
         #100;
 
         // 3. 문제1

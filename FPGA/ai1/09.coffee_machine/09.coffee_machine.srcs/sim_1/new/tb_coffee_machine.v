@@ -2,7 +2,6 @@
 
 module tb_coffee_machine();
 
-
     reg clk;                  // 100Mhz
     reg reset;                // reset btn (active high)
     reg coin;                // 동전 투입 (100원 단위)
@@ -34,7 +33,7 @@ module tb_coffee_machine();
         begin
             @(posedge clk)
             #1 coin = 1;                // setup time 확보
-            repeat(3) @(posedge clk);  // 3 clk 동안 유지
+            repeat(3) @(posedge clk);   // 3 clk 동안 유지
             #1 coin = 0;
             repeat(10) @(posedge clk);  // 대기 시간
         end
@@ -52,7 +51,7 @@ module tb_coffee_machine();
         return_coin_btn = 0;
         coffee_btn = 0;
         coffee_out = 0;
-        //--- 정상적인 reset seq ---
+        // --- 정상적인 reset seq ---
         #100; // 100ns 동안 reset 유지
         @(negedge clk) // 클럭이 하강 에지일 때 리셋 해제(글리치 방지)
         reset = 0;
@@ -65,18 +64,47 @@ module tb_coffee_machine();
         insert_coin();
         insert_coin();
 
-        //READY 확인
+        // READY 확인
         #20;
         if(coin_val >= 300) begin
             $display("time : %t current READY coin_val: %d ... ", $time, coin_val);
         end else begin
             $display("time : %t error coin_val: %d ...", $time, coin_val);
         end
-        // coffee_btn 누르면 READY --> COFFEE --> READY
+        // 4. coffee_btn 누르면 READY --> COFFEE --> READY
         @(posedge clk);
         #1 coffee_btn = 1;
         @(posedge clk);
         #1 coffee_btn = 0;
-        $display("time : %t coffee_btn pressed...", $time);
+        $display("time : %t coffee_btn pressed ...", $time);
+
+        // 커피 제조가 완료될 때까지 대기.
+        wait(coffee_make == 1); // 대기(sim에서만 사용 가능)
+        $display("time : %t coffee_make == 1", $time);
+        #200 // 제조 지연 시간
+
+        // -- 커피 제조 완료 신호 입력
+        @(posedge clk);
+        #1 coffee_out = 1;
+        @(posedge clk);
+        #1 coffee_out = 0;
+        $display("time : %t coffee_out sensor detected goto READY ...", $time);
+        #50;
+
+        //-- 5. 동전 반환 (READY --> COIN_OUT --> IDLE)
+        $display("time : %t coin return coin_val: %d ...", $time, coin_val);
+        @(posedge clk);
+        #1 return_coin_btn = 1;
+        @(posedge clk);
+        #1 return_coin_btn = 0;
+
+        wait(return_coin_btn == 0);
+        $display("time : %t return_coin_btn == 1 ...", $time);
+        #100;
+        if(coin_val == 0) begin
+            $display("time : %t return coin_val: %d goto IDLE ...", $time, coin_val);
+        end
+        #300;
+        $display("time : %t simulation successly finished...", $time);
     end
 endmodule

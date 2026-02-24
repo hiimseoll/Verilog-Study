@@ -9,7 +9,6 @@ module tick #(parameter MAX_COUNT = 5_000_000)(
     );
 
     //parameter MAX_COUNT = 5_000_000;
-
     //wire [$clog2(MAX_COUNT)-1:0] w_target = tb_mode ? 25'd4 : 25'd4_999_999; // 50ns : 50ms
 
     reg [$clog2(MAX_COUNT)-1:0] r_counter = 0; 

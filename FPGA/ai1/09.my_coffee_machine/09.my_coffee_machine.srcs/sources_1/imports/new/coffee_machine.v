@@ -99,7 +99,7 @@ module coffee_machine(
             
             // 커피 제조 완료시 차감
             if(r_current_state == COFFEE && coffee_out) begin
-                coin_val <= coin_val - COFFEE_VAL;     // 100원 차감
+                coin_val <= coin_val - COFFEE_VAL;     // 300원 차감
             end
 
             if(r_current_state == COIN_OUT) begin
@@ -115,8 +115,7 @@ module coffee_machine(
         coin_return = 0;
 
         case(r_current_state)
-            IDLE:;
-            COIN_IN, READY: begin
+            IDLE, COIN_IN, READY: begin
                 seg_en = 1;
             end
             COFFEE: begin

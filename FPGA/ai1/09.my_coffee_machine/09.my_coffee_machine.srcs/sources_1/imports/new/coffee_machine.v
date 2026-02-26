@@ -38,7 +38,7 @@ module coffee_machine(
         end
     end
 
-    assign w_coin_pulse = (coin && !r_coin_reg); // coin 상승 에지 검출
+        assign w_coin_pulse = (coin && !r_coin_reg); // coin 상승 에지 검출
 
     always @(*) begin
         r_next_state = r_current_state;
@@ -93,7 +93,9 @@ module coffee_machine(
             coin_val <= 0;
         end else begin
             // edge 검출을 통해서 상태와 관계 없이 동전 투입시 가산 하는 logic
-            if(w_coin_pulse && (r_current_state == IDLE || r_current_state == COIN_IN || r_current_state == READY)) begin
+            if(w_coin_pulse && (r_current_state == IDLE || 
+                                r_current_state == COIN_IN || 
+                                r_current_state == READY)) begin
                 coin_val <= coin_val + 16'd100;     // 100원 동전 투입
             end 
             

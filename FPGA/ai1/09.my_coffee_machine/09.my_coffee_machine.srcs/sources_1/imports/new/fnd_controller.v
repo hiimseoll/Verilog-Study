@@ -55,7 +55,11 @@ module fnd_controller #(
     );
 endmodule
 
-module fnd_digit_select #(parameter DYNAMIC_DRIVE_COUNT = 100_000, parameter EXTRACTION_COUNT = 500_000_000, parameter IDLE_COUNT = 10_000_000)(
+module fnd_digit_select #(
+    parameter DYNAMIC_DRIVE_COUNT = 100_000, 
+    parameter EXTRACTION_COUNT = 500_000_000, 
+    parameter IDLE_COUNT = 10_000_000)(
+
     input clk,
     input reset,
     input idle,

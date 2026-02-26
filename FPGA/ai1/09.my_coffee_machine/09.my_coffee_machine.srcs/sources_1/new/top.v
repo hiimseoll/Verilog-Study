@@ -1,6 +1,11 @@
 `timescale 1ns / 1ps
 
-module top #(parameter VALUE_BY_MODE = 1_000_000, parameter DYNAMIC_DRIVE_COUNT = 100_000, parameter EXTRACTION_COUNT = 500_000_000, parameter IDLE_COUNT = 10_000_000)(
+module top #(
+    parameter VALUE_BY_MODE = 1_000_000, 
+    parameter DYNAMIC_DRIVE_COUNT = 100_000, 
+    parameter EXTRACTION_COUNT = 500_000_000, 
+    parameter IDLE_COUNT = 10_000_000)(
+
     input clk,
     input reset,
     input [2:0] btn,
@@ -38,7 +43,11 @@ module top #(parameter VALUE_BY_MODE = 1_000_000, parameter DYNAMIC_DRIVE_COUNT 
     .coin_return(w_coin_return)      // 동전 반환 동작 신호
     );
 
-    fnd_controller #(.DYNAMIC_DRIVE_COUNT(DYNAMIC_DRIVE_COUNT), .EXTRACTION_COUNT(EXTRACTION_COUNT), .IDLE_COUNT(IDLE_COUNT)) u_fnd_controller(
+    fnd_controller #(
+        .DYNAMIC_DRIVE_COUNT(DYNAMIC_DRIVE_COUNT), 
+        .EXTRACTION_COUNT(EXTRACTION_COUNT), 
+        .IDLE_COUNT(IDLE_COUNT)) 
+    u_fnd_controller(
     .clk(clk),
     .reset(reset),
     .idle(w_coffee_make),

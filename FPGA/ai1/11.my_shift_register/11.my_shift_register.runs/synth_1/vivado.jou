@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Wed Feb 25 17:18:17 2026
+# Process ID: 10864
+# Current directory: E:/project/FPGA/ai1/11.my_shift_register/11.my_shift_register.runs/synth_1
+# Command line: vivado.exe -log my_shift_register.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source my_shift_register.tcl
+# Log file: E:/project/FPGA/ai1/11.my_shift_register/11.my_shift_register.runs/synth_1/my_shift_register.vds
+# Journal file: E:/project/FPGA/ai1/11.my_shift_register/11.my_shift_register.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source my_shift_register.tcl -notrace

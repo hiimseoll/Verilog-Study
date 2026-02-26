@@ -10,8 +10,9 @@ module fnd_controller(
     );
 
     wire [1:0] w_sel;
-    wire [2:0] w_d1, w_d10, w_d100;
+    wire [3:0] w_d1, w_d10, w_d100;
     wire w_toggle_direction_fnd;
+    wire [6:0] w_in_data;
 
     fnd_digit_select u_fnd_digit_select(
         .clk(clk),
@@ -21,7 +22,7 @@ module fnd_controller(
     );
 
     bin2bcd4digit u_bin2bcd4digit (
-        .in_data(in_data),
+        .in_data(w_in_data),
         .d1(w_d1),
         .d10(w_d10),
         .d100(w_d100)
@@ -37,6 +38,8 @@ module fnd_controller(
         .an(an),
         .seg(seg)
     );
+
+    assign w_in_data = in_data * 7'd10;
 endmodule
 
 module fnd_digit_select(
@@ -76,8 +79,8 @@ module fnd_digit_select(
 endmodule
 
 module bin2bcd4digit(
-    input [3:0] in_data,
-    output [2:0] d1, d10, d100
+    input [6:0] in_data,
+    output [3:0] d1, d10, d100
 );
 
     assign d1 = in_data % 10;
@@ -87,7 +90,7 @@ endmodule
 
 module fnd_digit_display(
     input [1:0] digit_sel,
-    input [2:0] d1, d10, d100,
+    input [3:0] d1, d10, d100,
     input [1:0] motor_direction,
     input toggle_direction_fnd,
     output reg [3:0] an,

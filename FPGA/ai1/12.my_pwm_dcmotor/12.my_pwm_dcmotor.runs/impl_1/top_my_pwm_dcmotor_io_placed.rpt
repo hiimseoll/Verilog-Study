@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date                      : Thu Feb 26 16:19:39 2026
+| Date                      : Thu Feb 26 16:29:54 2026
 | Host                      : DESKTOP-FAVD00F running 64-bit major release  (build 9200)
 | Command                   : report_io -file top_my_pwm_dcmotor_io_placed.rpt
 | Design                    : top_my_pwm_dcmotor

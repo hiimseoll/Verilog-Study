@@ -22,7 +22,7 @@ module pwm_duty_control(
             r_duty_cycle <= 4'd5;
         end
         else begin
-            if(increase_duty && r_duty_cycle < 4'd9) begin
+            if(increase_duty && r_duty_cycle < 4'd10) begin
                 r_duty_cycle <= r_duty_cycle + 1;
             end
 

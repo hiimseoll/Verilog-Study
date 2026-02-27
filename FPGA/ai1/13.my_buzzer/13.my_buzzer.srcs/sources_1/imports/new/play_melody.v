@@ -8,10 +8,6 @@ module play_melody(
     output buzzer
     );
 
-    // input clk: 100MHz
-    // output frequency:
-    // (100MHz / 원하는 주파수) / 2
-
     localparam FREQ_1K = 16'd50000;    // 50% duty
     localparam FREQ_2K = 16'd25000;
     localparam FREQ_3K = 16'd16666;
@@ -20,12 +16,12 @@ module play_melody(
     
     localparam COUNT_70MS_4TIMES = 28_000_000;
 
-    localparam [64:0] POWER_ON_MELODY = {FREQ_4K, FREQ_3K, FREQ_2K, FREQ_1K};
-    localparam [72:0] OPEN_MELODY = {18'd191_570, 18'd151_975, 18'd127_551, 18'd90_252};
+    localparam [63:0] POWER_ON_MELODY = {FREQ_4K, FREQ_3K, FREQ_2K, FREQ_1K};
+    localparam [71:0] OPEN_MELODY = {18'd191_570, 18'd151_975, 18'd127_551, 18'd90_252};
     
     reg [$clog2(COUNT_70MS_4TIMES) - 1 : 0] r_counter = 0;
     reg r_buzzer_frequency = 0;
-    reg [15:0] r_clk_cnt = 0;
+    reg [17:0] r_clk_cnt = 0;
 
     reg r_play_power_on = 0;
     reg r_play_open = 0;
@@ -89,14 +85,8 @@ module play_melody(
         end
     end
 
-assign power_on_current_freq = POWER_ON_MELODY[(r_counter / 7_000_000) * 16 + 16];
-assign open_current_freq = OPEN_MELODY[(r_counter / 7_000_000) * 18 + 18];
-   
-assign buzzer = r_buzzer_frequency; // 베릴로그 축약 OR 연산자 | r_buzzer_frequency
-//    assign buzzer = r_buzzer_frequency[0] | r_buzzer_frequency[1] |
-//                    r_buzzer_frequency[2] | r_buzzer_frequency[3] |
-//                    r_buzzer_frequency[4] | r_buzzer_frequency[5];
-                    // 0 : 5개 비트가 모두 0일때만 0
-                    // 1 : 하나라도 눌리면
+assign power_on_current_freq = POWER_ON_MELODY[(r_counter / 7_000_000) * 16 +: 16];
+assign open_current_freq = OPEN_MELODY[(r_counter / 7_000_000) * 18 +: 18];
+assign buzzer = r_buzzer_frequency; 
                     
 endmodule

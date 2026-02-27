@@ -2,8 +2,8 @@
 # Vivado v2021.1 (64-bit)
 # SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
 # IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
-# Start of session at: Fri Feb 27 15:38:24 2026
-# Process ID: 144
+# Start of session at: Fri Feb 27 15:52:03 2026
+# Process ID: 5868
 # Current directory: E:/project/FPGA/ai1/13.my_buzzer/13.my_buzzer.runs/synth_1
 # Command line: vivado.exe -log top_my_buzzer.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_my_buzzer.tcl
 # Log file: E:/project/FPGA/ai1/13.my_buzzer/13.my_buzzer.runs/synth_1/top_my_buzzer.vds

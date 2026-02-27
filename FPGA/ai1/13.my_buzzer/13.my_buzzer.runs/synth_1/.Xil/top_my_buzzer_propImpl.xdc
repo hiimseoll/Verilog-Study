@@ -1,0 +1,11 @@
+set_property SRC_FILE_INFO {cfile:E:/project/FPGA/ai1/13.my_buzzer/13.my_buzzer.srcs/constrs_1/imports/new/basys3.xdc rfile:../../../13.my_buzzer.srcs/constrs_1/imports/new/basys3.xdc id:1} [current_design]
+set_property src_info {type:XDC file:1 line:7 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN W5   IOSTANDARD LVCMOS33 } [get_ports clk]
+set_property src_info {type:XDC file:1 line:27 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN R2    IOSTANDARD LVCMOS33 } [get_ports {reset}]
+set_property src_info {type:XDC file:1 line:68 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN W19   IOSTANDARD LVCMOS33 } [get_ports btnL]
+set_property src_info {type:XDC file:1 line:70 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN T17   IOSTANDARD LVCMOS33 } [get_ports btnR]
+set_property src_info {type:XDC file:1 line:104 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN K17   IOSTANDARD LVCMOS33 } [get_ports {buzzer}];#Sch name = JC1

@@ -4,6 +4,7 @@ module top_microwave(
     input clk,
     input reset,
     input [4:0] btn,
+    input dir_motor,
 
     output buzzer,
     output [7:0] seg,
@@ -13,17 +14,11 @@ module top_microwave(
     output pwm_door
     );
 
-    localparam NONE = 3'b000;
-    localparam OPEN_CLOSE = 3'b001;
-    localparam START_STOP = 3'b010;
-    localparam ADD_TIME = 3'b011;
-    localparam ADD_SPEED = 3'b100;
-    localparam CANCEL = 3'b101;
-
     wire [4:0] w_btn;
-
-    reg r_melody_mode;
-    reg r_action;
+    wire w_toggle;
+    wire w_timeout;
+    wire [9:0] w_running_time;
+    wire w_door_state;
 
     debouncer u_btn0_debouncer(
         .clk(clk),
@@ -60,40 +55,58 @@ module top_microwave(
         .clean_btn(w_btn[4])
     );
 
-    always @(posedge clk, posedge reset) begin
-        if(reset) begin
-            r_melody_mode <= 0;
-        end
-        else begin
-            case(w_btn)
-            5'b00000: begin
-                r_action <= OPEN_CLOSE;
-            end
-            5'b00010: begin
-                r_action <= START_STOP;
-            end
-            5'b00100: begin
-                r_action <= ADD_TIME;
-            end
-            5'b01000: begin
-                r_action <= ADD_SPEED;
-            end
-            5'b10000: begin
-                r_action <= CANCEL;
-            end
-            default: begin
-                r_action <= NONE;
-            end
-            endcase
-        end
-    end
+    timer u_timer(
+        .clk(clk),
+        .reset(reset),
+        .btn_add_time(w_btn[3]),
+        .btn_start_stop(w_btn[1]),
+        .btn_cancel(w_btn[4]),
+        .door_state(w_door_state),
+        .toggle(w_toggle),
+        .timeout(w_timeout),
+        .running_time(w_running_time)
+    );
 
-    always @(r_action) begin
-        case(r_action)
+    fnd u_fnd(
+        .clk(clk),
+        .reset(reset),
+        .in_data(w_running_time),
+        .an(an),
+        .seg(seg),
+        .toggle(w_toggle),
+        .timeout(w_timeout)
+    );
 
-        ADD_TIME: begin
-        end
+    door u_door(
+        .clk(clk),
+        .reset(reset),
+        .btn_open_close(w_btn[0]),
+        .pwm_door(pwm_door),
+        .door_state(w_door_state)
+    );
 
-        endcase
-    end
+    melody u_melody(
+        .clk(clk),
+        .reset(reset),
+        .btn_add_time(w_btn[3]),
+        .btn_start_stop(w_btn[1]),
+        .btn_cancel(w_btn[4]),
+        .btn_speed_up(w_btn[2]),
+        .timeout(w_timeout),
+        .door_state(w_door_state),
+        .buzzer(buzzer)
+    );
+
+    motor u_motor(
+        .clk(clk),
+        .reset(reset),
+        .door_state(w_door_state),
+        .btn_start_stop(w_btn[1]),
+        .btn_cancel(w_btn[4]),
+        .btn_speed_up(w_btn[2]),
+        .timeout(w_timeout),
+        .pwm_plate(pwm_plate)
+    );
+    
+    assign dir_plate = dir_motor;
 endmodule

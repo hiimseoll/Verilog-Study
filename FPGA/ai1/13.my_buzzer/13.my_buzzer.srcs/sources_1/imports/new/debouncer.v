@@ -7,7 +7,7 @@ module debouncer(
     output clean_btn
     );
 
-    parameter MAX_COUNT = 100_000;
+    parameter MAX_COUNT = 1_000_000;
 
     reg [$clog2(MAX_COUNT) - 1:0] r_counter = 0; // 10ms
     reg r_clean_btn = 1'b0;

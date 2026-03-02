@@ -1,17 +1,12 @@
 `timescale 1ns / 1ps
 
-module fnd #(
-    parameter DYNAMIC_DRIVE_COUNT = 100_000, 
-    parameter EXTRACTION_COUNT = 500_000_000, 
-    parameter IDLE_COUNT = 10_000_000)(
-
+module fnd (
     input clk,
     input reset,
-    input idle,
-    input [15:0] in_data,
-    input seg_en,
+    input [9:0] in_data,
+    input timeout,
+    input toggle,
 
-    output timeout,
     output [3:0] an,
     output [7:0] seg
     );
@@ -19,19 +14,18 @@ module fnd #(
     wire [1:0] w_sel;
     wire [3:0] w_d1, w_d10, w_d100, w_d1000;
     wire [3:0] w_idle_state;
+    wire w_display_mode;
+    wire w_blink;
 
-    fnd_digit_select #(
-        .DYNAMIC_DRIVE_COUNT(DYNAMIC_DRIVE_COUNT),
-         .EXTRACTION_COUNT(EXTRACTION_COUNT),
-          .IDLE_COUNT(IDLE_COUNT))
-    u_fnd_digit_select(
+    fnd_digit_select u_fnd_digit_select(
         .clk(clk),
         .reset(reset),
-        .idle(idle),
         .sel(w_sel),
-        .extraction_end(extraction_end),
-        .seg_en(seg_en),
-        .idle_state(w_idle_state)
+        .idle_state(w_idle_state),
+        .display_mode(w_display_mode),
+        .toggle(toggle),
+        .timeout(timeout),
+        .blink(w_blink)
     );
 
     bin2bcd4digit u_bin2bcd4digit (
@@ -43,9 +37,10 @@ module fnd #(
     );
 
     fnd_digit_display u_fnd_digit_display(
-        .idle(idle),
+        .idle(w_display_mode == 0),
         .idle_state(w_idle_state),
         .digit_sel(w_sel),
+        .blink(w_blink),
         .d1(w_d1),
         .d10(w_d10),
         .d100(w_d100),
@@ -57,61 +52,83 @@ endmodule
 
 module fnd_digit_select #(
     parameter DYNAMIC_DRIVE_COUNT = 100_000, 
-    parameter EXTRACTION_COUNT = 500_000_000, 
-    parameter IDLE_COUNT = 10_000_000)(
+    parameter IDLE_COUNT = 5_000_000,
+    parameter NUM_HOLD_COUNT = 50_000_000,
+    parameter BLINK_COUNT = 100_000_000) ( 
 
-    input clk,
-    input reset,
-    input idle,
-    input seg_en,
-    output reg extraction_end,
+    input clk, reset, toggle, timeout,
     output reg [1:0] sel,
-    output reg [3:0] idle_state
+    output reg [3:0] idle_state,
+    output reg display_mode,
+    output reg blink
 );
-
-    reg [$clog2(DYNAMIC_DRIVE_COUNT) - 1 : 0] r_1ms_counter = 0;
-    reg [$clog2(IDLE_COUNT) - 1 : 0] r_idle_counter = 0;
-    reg [$clog2(EXTRACTION_COUNT) - 1 : 0] r_5s_counter = 0;
+    reg [$clog2(DYNAMIC_DRIVE_COUNT)-1:0] r_1ms_counter = 0;
+    reg [31:0] r_mode_counter = 0;
+    
+    // Blink 관련 레지스터
+    reg [31:0] r_blink_counter = 0;
+    reg [2:0] r_blink_step = 0; 
 
     always @(posedge clk or posedge reset) begin
         if(reset) begin
             sel <= 0;
             r_1ms_counter <= 0;
             idle_state <= 0;
-            r_idle_counter <= 0;
-            r_5s_counter <= 0;
-            extraction_end <= 0;
-        end else if(seg_en == 1) begin
+            display_mode <= 0;
+            r_mode_counter <= 0;
+            r_blink_step <= 0;
+            blink <= 0;
+        end else begin
+
             if(r_1ms_counter >= DYNAMIC_DRIVE_COUNT - 1) begin 
-                r_1ms_counter <= 0;
-                sel <= sel + 1;
-            end else begin
-                r_1ms_counter <= r_1ms_counter + 1;
+                r_1ms_counter <= 0; sel <= sel + 1;
+            end else r_1ms_counter <= r_1ms_counter + 1;
+
+
+            if(timeout && r_blink_step == 0) begin
+                r_blink_step <= 1; 
+                r_blink_counter <= 0;
             end
 
-            if(idle && r_5s_counter < EXTRACTION_COUNT - 1) begin
-                if(r_idle_counter >= IDLE_COUNT - 1) begin // idle시 100ms로 digit 선택 
-                    r_idle_counter <= 0;
-                    if(idle_state >= 11) idle_state <= 0;
-                    else idle_state <= idle_state + 1;
-                end else begin
-                    r_idle_counter <= r_idle_counter + 1;
-                    r_5s_counter <= r_5s_counter + 1;
-                end
-            end else if(r_5s_counter == EXTRACTION_COUNT - 1 && extraction_end == 0) begin
-                extraction_end <= 1;
-            end else begin
-                r_idle_counter <= 0;
-                r_5s_counter <= 0;
-                idle_state <= 0;
-                extraction_end <= 0;
+            if(r_blink_step > 0) begin
+                if(r_blink_counter >= BLINK_COUNT / 2 - 1) begin 
+                    r_blink_counter <= 0;
+                    if(r_blink_step >= 6) begin
+                        r_blink_step <= 0;
+                        blink <= 0;
+                    end else begin
+                        r_blink_step <= r_blink_step + 1;
+                        blink <= ~blink;
+                    end
+                end else r_blink_counter <= r_blink_counter + 1;
             end
-        end else begin end
+
+
+            if(toggle) begin
+                if(display_mode == 0) begin
+                    if(r_mode_counter >= IDLE_COUNT - 1) begin
+                        r_mode_counter <= 0;
+                        if(idle_state >= 11) begin idle_state <= 0; display_mode <= 1; end
+                        else idle_state <= idle_state + 1;
+                    end else r_mode_counter <= r_mode_counter + 1;
+                end else begin
+                    if(r_mode_counter >= NUM_HOLD_COUNT - 1) begin
+                        r_mode_counter <= 0; display_mode <= 0;
+                    end else r_mode_counter <= r_mode_counter + 1;
+                end
+            end else begin
+                display_mode <= 1;
+                idle_state <= 0;
+                r_mode_counter <= 0;
+            end
+        end
     end
 endmodule
 
+
+
 module bin2bcd4digit(
-    input [15:0] in_data,
+    input [9:0] in_data,
     output [3:0] d1, d10, d100, d1000
 );
 
@@ -126,13 +143,14 @@ module fnd_digit_display(
     input [3:0] idle_state,
     input [1:0] digit_sel,
     input [3:0] d1, d10, d100, d1000,
+    input blink,
     output reg [3:0] an,
     output reg [7:0] seg
 );
 
     reg [3:0] bcd_data;
 
-    // 숫자 선택
+
     always @(*) begin
         case(digit_sel)
             2'b00: bcd_data = d1;
@@ -143,10 +161,14 @@ module fnd_digit_display(
         endcase
     end
 
-    // idle 애니메이션 또는 숫자 출력 선택
-    always @(*) begin
 
-        if (idle) begin // idle == 1 숫자 off / circular 출력
+    always @(*) begin
+        if(blink) begin
+            an = 4'b1111; 
+            seg = 8'hFF; 
+        end
+
+        else if (idle) begin 
             an = 4'b1111; 
             seg = 8'hFF;  
             

@@ -24,10 +24,10 @@ module tb_top_rotary();
     task gen_btn_noise(input integer sw); // 0: s1, 1: s2
         begin
             repeat(3) begin
-                if(sw) begin
+                if(sw) begin // 1: s2
                     s2 = ~s2;
                 end
-                else if(!sw) begin
+                else if(!sw) begin // 0: s1
                     s1 = ~s1;
                 end
                 else begin
@@ -55,5 +55,46 @@ module tb_top_rotary();
         s1 = 1;
         #3000; // 200 cycle(10us * 200 = 2000ns): noise보다 긴 3000ns 대기.
         
+        gen_btn_noise(1); 
+        s2 = 1;
+        #3000; // 200 cycle(10us * 200 = 2000ns): noise보다 긴 3000ns 대기.
+
+        s1 = 0;
+        #3000;
+        s2 = 0;
+        #3000; // no noises
+
+        // CCW 00 --> 01 --> 11 --> 10 --> 00
+        $display("CCW TEST start");
+        //gen_btn_noise(1); 
+        s2 = 1;
+        #3000; // 200 cycle(10us * 200 = 2000ns): noise보다 긴 3000ns 대기.
+
+        gen_btn_noise(0); 
+        s1 = 1;
+        #3000; // 200 cycle(10us * 200 = 2000ns): noise보다 긴 3000ns 대기.
+        
+        s2 = 0;
+        #3000;
+        s1 = 0;
+        #3000; // no noises
+
+        // KEY btn toggle test
+        $display("KEY_BTN TOGGLE TEST start");
+        gen_btn_noise(2); // rising edge detect
+        key = 1;
+        #3000;
+
+        key = 0;
+        #3000;
+
+        $display("TEST COMPLETE");
+        $finish;
+    end
+
+    // 모니터링 출력
+    initial begin
+        $monitor("[time=%t], r_counter: %h, r_direction: %b, r_led_toggle: %b",
+                  $time,     led[7:0],      led[15:14],      led[13]);
     end
 endmodule

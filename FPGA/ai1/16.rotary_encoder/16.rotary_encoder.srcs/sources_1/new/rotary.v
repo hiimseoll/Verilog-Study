@@ -11,6 +11,7 @@ module rotary(
     reg [1:0] r_direction = 2'b00; // cw: 01, ccw: 10
     reg [1:0] r_previous_state = 2'b00;
     reg [1:0] r_current_state = 2'b00;
+    reg [1:0] r_step = 2'b00;
     reg [7:0] r_counter = 8'h00;
 
 
@@ -20,6 +21,7 @@ module rotary(
             r_previous_state <= 2'b00;
             r_current_state <= 2'b00;
             r_counter <= 8'h00;
+            r_step <= 2'b00;
         end
         else begin
             r_previous_state <= r_current_state;
@@ -30,18 +32,20 @@ module rotary(
                 4'b1011, 
                 4'b1101, 
                 4'b0100: begin
-                    r_counter <= r_counter + (r_counter < 8'hFF) ?  1 : 0; // overflow 방지
+                    r_counter <= r_counter + ((r_counter < 8'hFF && r_step == 2'b11) ?  1 : 0); // overflow 방지
+                    r_step <= r_step + 1;
                     r_direction <= 2'b01; // cw indicator
                 end
                 4'b0001,
                 4'b0111,
                 4'b1110,
                 4'b1000: begin
-                    r_counter <= r_counter - (r_counter > 8'h00) ?  1 : 0; // underflow 방지
+                    r_counter <= r_counter - ((r_counter > 8'h00 &&  r_step == 2'b11) ?  1 : 0); // underflow 방지
+                    r_step <= r_step + 1;
                     r_direction <= 2'b10; // ccw indicator
                 end
                 default: begin
-                    r_direction = 2'b00;
+                    //r_direction = 2'b00;
                 end
             endcase
         end

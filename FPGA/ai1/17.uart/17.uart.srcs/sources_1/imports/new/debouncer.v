@@ -33,6 +33,6 @@ module debouncer #(parameter DEBOUNCE_LIMIT = 1_000_000)(
                 end
             end
         end
-        assign clean_btn = r_clean_btn;
-        //assign clean_btn = (r_clean_btn && !r_prev_clean_btn); posedge setup
+        //assign clean_btn = r_clean_btn;
+        assign clean_btn = (r_clean_btn && !r_prev_clean_btn);
 endmodule

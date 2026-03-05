@@ -48,4 +48,14 @@ module uart_controller(
         .tx_done(w_tx_done),
         .tx_busy(w_tx_busy)
     );
+
+    uart_rx #(
+        .BAUD(9600)
+    ) u_uart_rx(
+        .clk(clk),
+        .reset(reset),
+        .rx(rx),
+        .data_out(rx_data),
+        .rx_done(rx_done)
+    );
 endmodule

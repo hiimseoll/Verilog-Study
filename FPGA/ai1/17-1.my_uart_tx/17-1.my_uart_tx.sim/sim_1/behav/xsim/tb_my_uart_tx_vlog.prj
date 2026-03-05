@@ -1,0 +1,14 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../17-1.my_uart_tx.srcs/sources_1/imports/sources_1/new/data_sender.v" \
+"../../../../17-1.my_uart_tx.srcs/sources_1/imports/sources_1/imports/new/debouncer.v" \
+"../../../../17-1.my_uart_tx.srcs/sources_1/imports/sources_1/new/top.v" \
+"../../../../17-1.my_uart_tx.srcs/sources_1/imports/sources_1/new/uart_controller.v" \
+"../../../../17-1.my_uart_tx.srcs/sources_1/imports/sources_1/new/uart_tx.v" \
+"../../../../17-1.my_uart_tx.srcs/sim_1/new/tb_my_uart_tx.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

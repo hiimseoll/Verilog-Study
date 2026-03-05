@@ -72,7 +72,7 @@ proc create_report { reportName command } {
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param checkpoint.writeSynthRtdsInDcp 1
 set_param chipscope.maxJobs 2
-set_param synth.incrementalSynthesisCache C:/Users/IOT17/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-17316-DESKTOP-FAVD00F/incrSyn
+set_param synth.incrementalSynthesisCache C:/Users/IOT17/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-3892-DESKTOP-FAVD00F/incrSyn
 set_param xicom.use_bs_reader 1
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
@@ -92,9 +92,12 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
+  E:/project/FPGA/ai1/17.uart/17.uart.srcs/sources_1/imports/new/control_tower.v
   E:/project/FPGA/ai1/17.uart/17.uart.srcs/sources_1/new/data_sender.v
+  E:/project/FPGA/ai1/17.uart/17.uart.srcs/sources_1/imports/new/debouncer.v
   E:/project/FPGA/ai1/17.uart/17.uart.srcs/sources_1/imports/new/tick.v
   E:/project/FPGA/ai1/17.uart/17.uart.srcs/sources_1/new/uart_controller.v
+  E:/project/FPGA/ai1/17.uart/17.uart.srcs/sources_1/new/uart_rx.v
   E:/project/FPGA/ai1/17.uart/17.uart.srcs/sources_1/new/uart_tx.v
   E:/project/FPGA/ai1/17.uart/17.uart.srcs/sources_1/new/top.v
 }

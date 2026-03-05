@@ -1,0 +1,14 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../17-2.uart_circular_queue.srcs/sources_1/imports/sources_1/imports/new/control_tower.v" \
+"../../../../17-2.uart_circular_queue.srcs/sources_1/new/fsm_pattern.v" \
+"../../../../17-2.uart_circular_queue.srcs/sources_1/imports/sources_1/new/top.v" \
+"../../../../17-2.uart_circular_queue.srcs/sources_1/imports/sources_1/new/uart_controller.v" \
+"../../../../17-2.uart_circular_queue.srcs/sources_1/imports/sources_1/new/uart_rx.v" \
+"../../../../17-2.uart_circular_queue.srcs/sim_1/imports/new/tb_uart_rx.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

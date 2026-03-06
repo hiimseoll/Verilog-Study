@@ -27,6 +27,8 @@ module uart_rx #(
     reg r_baud_tick;
     reg [3:0] r_baud_tick_count; // 16 count
 
+    reg rx_ff1, rx_ff2;
+
     always @(posedge clk, posedge reset) begin
         if(reset) begin
             r_baud_count <= 0;
@@ -46,6 +48,16 @@ module uart_rx #(
 
     always @(posedge clk, posedge reset) begin
         if(reset) begin
+            rx_ff1 <= 1;
+            rx_ff2 <= 1;
+        end begin
+            rx_ff1 <= rx;
+            rx_ff2 <= rx_ff1;
+        end
+    end
+
+    always @(posedge clk, posedge reset) begin
+        if(reset) begin
             data_out <= 8'd0;
             rx_done <= 1'b0;
             r_state <= IDLE;
@@ -57,7 +69,7 @@ module uart_rx #(
             if(r_state == IDLE ) begin
                 rx_done <= 1'b0;
 
-                if(!rx) begin // start bit rx
+                if(!rx_ff2) begin // start bit rx
                     r_state <= START;
                     r_baud_tick_count <= 4'd0;
                 end
@@ -75,7 +87,7 @@ module uart_rx #(
                     end
                     DATA: begin
                         if(r_baud_tick_count >= 4'd15) begin
-                            r_data_register[r_bit_index] <= rx;
+                            r_data_register[r_bit_index] <= rx_ff2;
                             r_baud_tick_count <= 4'd0;
 
                             if(r_bit_index >= 4'd7) begin

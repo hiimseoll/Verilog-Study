@@ -5,7 +5,7 @@ module control_tower(
     input reset,        // sw[15]
     input [7:0] rx_data,    // uart 8bits
     input rx_done,          // data arrival sig
-    output reg led
+    output led0
     );
     
     // mode define
@@ -23,9 +23,8 @@ module control_tower(
     reg [3:0] read_pointer;
     
     reg [1:0] read_write_mode = IDLE;
-    wire w_led_mode;
-
     reg [7:0] r_data_for_check;
+
     wire [7:0] w_data_for_check;
 
     integer i = 0;
@@ -47,12 +46,11 @@ module control_tower(
                 end
                 WRITE: begin
                     queue_data[write_pointer] <= rx_data;
+
                     write_pointer <= (write_pointer >= 9) ? 0 : write_pointer + 1;
 
-                    if(rx_data == 8'h0D) begin
+                    if(rx_data == 8'h0A) begin
                         read_write_mode <= READ;
-                        read_pointer <= 0;
-
                         r_data_for_check <= 8'h00;
                     end
                     else begin
@@ -63,12 +61,10 @@ module control_tower(
                 READ: begin
                     r_data_for_check <= queue_data[read_pointer]; 
 
-                    if (queue_data[read_pointer] == 8'h0D || read_pointer == 9) begin
+                    read_pointer <= (read_pointer >= 9) ? 0 : read_pointer + 1;
+
+                    if(queue_data[read_pointer] == 8'h0A) begin
                         read_write_mode <= IDLE;
-                        read_pointer <= 0; 
-                    end
-                    else begin
-                        read_pointer <= read_pointer + 1;
                     end
                 end
                 default: begin
@@ -78,27 +74,13 @@ module control_tower(
         end
     end
 
-    assign w_data_for_check = r_data_for_check;
-
-    // led mode display
-    always @(*) begin
-        case(w_led_mode)
-            LED_0_ON: begin
-                led = 1'b1;
-            end
-            LED_0_OFF: begin
-                led = 1'b0;
-            end
-            default: begin
-                led = led;
-            end
-        endcase
-    end
 
     fsm_pattern u_fsm_pattern(
         .clk(clk),
         .reset(reset),
         .in(w_data_for_check),
-        .out(w_led_mode)
+        .out(led0)
     );
+
+    assign w_data_for_check = r_data_for_check;
 endmodule

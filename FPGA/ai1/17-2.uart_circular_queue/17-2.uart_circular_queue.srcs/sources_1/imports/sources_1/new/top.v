@@ -5,7 +5,7 @@ module top(
     input reset,
     input RsRx,
 
-    output led
+    output led0
     );
 
     wire [7:0] w_rx_data;
@@ -16,7 +16,7 @@ module top(
         .reset(reset),
         .rx_data(w_rx_data),
         .rx_done(w_rx_done),
-        .led(led)
+        .led0(led0)
     );
 
     uart_controller u_uart_controller(

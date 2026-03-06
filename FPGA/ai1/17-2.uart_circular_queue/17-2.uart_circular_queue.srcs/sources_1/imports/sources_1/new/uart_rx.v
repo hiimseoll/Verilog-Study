@@ -100,8 +100,5 @@ module uart_rx #(
             end
         end
     end
-    reg rx_done_d;
-always @(posedge clk) rx_done_d <= rx_done;
-wire rx_done_stable = rx_done | rx_done_d;
 endmodule
 

@@ -5,13 +5,13 @@ module tb_uart_rx();
     reg clk;
     reg reset;
     reg RsRx;
-    wire led;
+    wire led0;
 
     top u_top(
         .clk(clk),
         .reset(reset),
         .RsRx(RsRx),
-        .led(led)
+        .led0(led0)
     );
 
     initial clk = 0;
@@ -78,10 +78,77 @@ module tb_uart_rx();
         #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; 
         #BAUD_PERIOD RsRx = 1; // stop
 
-        // 결과 확인을 위해 충분히 대기
-        #10000000; 
+        // --- 7. '\l' (0x0D: 0000_1010) ---
+        #BAUD_PERIOD RsRx = 0; // start
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; 
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 1; // stop
 
 
+        #100000;
+
+        // --- 1. 'l' (0x6C: 0110_1100) ---
+        #BAUD_PERIOD RsRx = 0; // start
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; 
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 1; // stop
+        #BAUD_PERIOD;
+
+        // --- 2. 'e' (0x65: 0110_0101) ---
+        #BAUD_PERIOD RsRx = 0; // start
+        #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 1; // stop
+        #BAUD_PERIOD;
+
+        // --- 3. 'd' (0x64: 0110_0100) ---
+        #BAUD_PERIOD RsRx = 0; // start
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 1; // stop
+        #BAUD_PERIOD;
+
+        // --- 4. '0' (0x30: 0011_0000) ---
+        #BAUD_PERIOD RsRx = 0; // start
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 1; // stop
+        #BAUD_PERIOD;
+
+        // --- 5. 'o' (0x6F: 0110_1111) ---
+        #BAUD_PERIOD RsRx = 0; // start
+        #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; 
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 1; // stop
+        #BAUD_PERIOD;
+
+        // --- 6. 'f' (0x6E: 0110_0110) ---
+        #BAUD_PERIOD RsRx = 0; // start
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 1; // stop
+        #BAUD_PERIOD;
+
+        // --- 6. 'f' (0x6E: 0110_0110) ---
+        #BAUD_PERIOD RsRx = 0; // start
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 1; // stop
+        #BAUD_PERIOD;
+
+        // --- 7. '\r' (0x0D: 0000_1101) ---
+        #BAUD_PERIOD RsRx = 0; // start
+        #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 1; 
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 1; // stop
+
+        // --- 7. '\l' (0x0D: 0000_1010) ---
+        #BAUD_PERIOD RsRx = 0; // start
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 1; 
+        #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; #BAUD_PERIOD RsRx = 0; 
+        #BAUD_PERIOD RsRx = 1; // stop
+
+        #1000; 
 
         $display("UART RX text complete.");
         $finish;

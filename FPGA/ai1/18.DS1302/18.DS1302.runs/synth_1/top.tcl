@@ -93,7 +93,13 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
   E:/project/FPGA/ai1/18.DS1302/18.DS1302.srcs/sources_1/new/DS1302.v
+  E:/project/FPGA/ai1/18.DS1302/18.DS1302.srcs/sources_1/new/alarm_controller.v
+  E:/project/FPGA/ai1/18.DS1302/18.DS1302.srcs/sources_1/new/buzzer.v
   E:/project/FPGA/ai1/18.DS1302/18.DS1302.srcs/sources_1/imports/new/debouncer.v
+  E:/project/FPGA/ai1/18.DS1302/18.DS1302.srcs/sources_1/new/fnd_controller.v
+  E:/project/FPGA/ai1/18.DS1302/18.DS1302.srcs/sources_1/new/uart_cmd_parser.v
+  E:/project/FPGA/ai1/18.DS1302/18.DS1302.srcs/sources_1/imports/new/uart_controller.v
+  E:/project/FPGA/ai1/18.DS1302/18.DS1302.srcs/sources_1/imports/new/uart_rx.v
   E:/project/FPGA/ai1/18.DS1302/18.DS1302.srcs/sources_1/new/top.v
 }
 OPTRACE "Adding files" END { }

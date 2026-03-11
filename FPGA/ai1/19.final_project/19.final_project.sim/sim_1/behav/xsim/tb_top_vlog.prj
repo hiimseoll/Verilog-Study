@@ -1,0 +1,24 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../19.final_project.srcs/sources_1/imports/ai1/18.DS1302/18.DS1302.srcs/sources_1/new/DS1302.v" \
+"../../../../19.final_project.srcs/sources_1/imports/ai1/18.DS1302/18.DS1302.srcs/sources_1/new/alarm_controller.v" \
+"../../../../19.final_project.srcs/sources_1/imports/ai1/18.DS1302/18.DS1302.srcs/sources_1/new/buzzer.v" \
+"../../../../19.final_project.srcs/sources_1/imports/ai1/17-1.my_uart_tx/17-1.my_uart_tx.srcs/sources_1/imports/sources_1/new/data_sender.v" \
+"../../../../19.final_project.srcs/sources_1/new/dcmotor.v" \
+"../../../../19.final_project.srcs/sources_1/imports/ai1/18.DS1302/18.DS1302.srcs/sources_1/imports/new/debouncer.v" \
+"../../../../19.final_project.srcs/sources_1/new/dht11.v" \
+"../../../../19.final_project.srcs/sources_1/imports/ai1/18.DS1302/18.DS1302.srcs/sources_1/new/fnd_controller.v" \
+"../../../../19.final_project.srcs/sources_1/new/louver_controller.v" \
+"../../../../19.final_project.srcs/sources_1/imports/ai1/18.DS1302/18.DS1302.srcs/sources_1/new/rotary_temp_set.v" \
+"../../../../19.final_project.srcs/sources_1/imports/ai1/18.DS1302/18.DS1302.srcs/sources_1/new/top.v" \
+"../../../../19.final_project.srcs/sources_1/imports/ai1/18.DS1302/18.DS1302.srcs/sources_1/new/uart_cmd_parser.v" \
+"../../../../19.final_project.srcs/sources_1/imports/ai1/18.DS1302/18.DS1302.srcs/sources_1/imports/new/uart_controller.v" \
+"../../../../19.final_project.srcs/sources_1/imports/ai1/18.DS1302/18.DS1302.srcs/sources_1/imports/new/uart_rx.v" \
+"../../../../19.final_project.srcs/sources_1/imports/ai1/17-1.my_uart_tx/17-1.my_uart_tx.srcs/sources_1/imports/sources_1/new/uart_tx.v" \
+"../../../../19.final_project.srcs/sim_1/new/tb_top.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
